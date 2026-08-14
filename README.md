@@ -58,7 +58,6 @@ The following screenshots show the raw Hotel Booking Demand dataset used as the 
 
 ![Raw Dataset 2](https://raw.githubusercontent.com/ibtj21/DSA3050-PowerBI-Hana-670555/main/screenshots/raw_data2.png)
 
-![Raw Dataset 3](https://raw.githubusercontent.com/ibtj21/DSA3050-PowerBI-Hana-670555/main/screenshots/raw_data3.png)
 
 ---
 
