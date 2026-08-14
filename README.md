@@ -7,7 +7,7 @@
 **Software:** Microsoft Power BI Desktop  
 **Dataset:** Hotel Booking Demand  
 
-![Hotel Booking Dataset](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/hotel.png)
+![Hotel Booking Dataset](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/01_raw_data/hotel.png)
 
 ---
 
@@ -54,9 +54,9 @@ It provides information suitable for analysing hotel booking demand, cancellatio
 
 The following screenshots show the raw Hotel Booking Demand dataset used as the starting point for the analysis.
 
-![Raw Dataset 1](https://raw.githubusercontent.com/ibtj21/DSA3050-PowerBI-Hana-670555/main/screenshots/raw_data1.png)
+![Raw Dataset 1](https://raw.githubusercontent.com/ibtj21/DSA3050-PowerBI-Hana-670555/main/screenshots/01_raw_data/raw_data1.png)
 
-![Raw Dataset 2](https://raw.githubusercontent.com/ibtj21/DSA3050-PowerBI-Hana-670555/main/screenshots/raw_data2.png)
+![Raw Dataset 2](https://raw.githubusercontent.com/ibtj21/DSA3050-PowerBI-Hana-670555/main/screenshots/01_raw_data/raw_data2.png)
 
 
 ---
@@ -173,7 +173,7 @@ Having established the dataset, its characteristics, and the key analytical ques
 
 The following screenshot shows the initial loading of the raw dataset into Power BI.
 
-![Loading Raw Dataset into Power BI](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/load_data.png)
+![Loading Raw Dataset into Power BI](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/01_raw_data/load_data.png)
 
 > **Figure 1: Initial loading of the Hotel Booking Demand dataset into Power BI Desktop.**
 
