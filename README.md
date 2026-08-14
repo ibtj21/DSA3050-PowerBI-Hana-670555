@@ -677,18 +677,7 @@ The original `hotels` table was also kept as a staging query rather than loaded 
 
 The final analytical model therefore consists of:
 
-```text
-                         DimDate
-                            |
-                            | 1 : *
-                            |
-DimHotel  ---------------- FactBooking ----------------  DimCountry
-    |                          |                              |
-    | 1 : *                    |                              | 1 : *
-    |                          |
-DimRoom ---------------- DimMarketSegment
-       1 : *                    1 : *
-```
+![Completed Power BI Data Model](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/03_model/completed_model%20_view.png)
 
 The resulting model provides a structured foundation for the next stages of the project. The dimension tables provide descriptive and filtering context, while `FactBooking` provides the transactional booking data and measures that will be used to develop the project's **DAX calculations, KPIs, visualizations, and business insights**.
 
