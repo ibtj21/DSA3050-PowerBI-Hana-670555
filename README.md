@@ -192,6 +192,8 @@ The following transformations were applied to improve data quality, consistency,
 **Problem:**
 The `children` column was already assigned the appropriate **Whole Number** data type, but four records contained the value `NA`. These non-numeric values resulted in `DataFormat.Error` when Power Query attempted to interpret the column as numeric.
 
+![Filtered Invalid Rows](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/02_power_query/Handling_errors/filtered_invalid_rows.png)
+
 **Transformation:**
 Used **Replace Errors** on the `children` column and replaced the four error values with `null`.
 
