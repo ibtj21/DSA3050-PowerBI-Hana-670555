@@ -238,8 +238,16 @@ Missing values were identified in several categorical fields, including `country
 Missing values were handled using meaningful replacement categories:
 
 * `country` → `Unknown`
+
+![Handling Missing Country Values](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/02_power_query/Handling_missing_values/fill_country.png)
+
 * `agent` → `Not Recorded`
+
+![Handling Missing Agent Values](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/02_power_query/Handling_missing_values/fill_agent.png)
+
 * `company` → `Not Applicable`
+
+![Handling Missing Company Values](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/02_power_query/Handling_missing_values/fill_company.png)
 
 **Reason:**
 The affected booking records were not removed because the missing information in these fields did not make the entire booking unusable. Meaningful categories allow the records to remain available for analysis while distinguishing missing or non-applicable information from valid categories.
