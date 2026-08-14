@@ -11,7 +11,7 @@
 
 ---
 
-## 1. Project Introduction
+# Project Introduction
 
 This project develops a Business Intelligence solution using Microsoft Power BI to analyze hotel booking demand, cancellation patterns, pricing, customer characteristics, and hotel performance. The project follows the complete BI workflow, from data acquisition and preparation to data modelling, DAX analysis, interactive dashboard development, and business interpretation.
 
