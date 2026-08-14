@@ -324,6 +324,8 @@ Created a conditional column named **`Cancellation Status`**:
 * `1` → `Cancelled`
 * `0` → `Not Cancelled`
 
+![Creating Conditional Column](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/02_power_query/Creating_conditional_columns/conditional_column.png)
+
 **Reason:**
 Descriptive categories are easier to interpret in filters, tables, charts, and KPI analysis than numeric binary codes.
 
@@ -340,6 +342,8 @@ The `reservation_status_date` field contains a complete date, but month-level an
 **Transformation:**
 Extracted the **month** from `reservation_status_date` to create a new `Month` field.
 
+![Extracting Reservation Month](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/02_power_query/Extracting_information_from_dates/extract_month.png)
+
 **Reason:**
 Monthly information supports analysis of reservation-status patterns and allows booking outcomes to be examined across different periods.
 
@@ -354,13 +358,17 @@ A month-level field was created from `reservation_status_date` for use in time-b
 The extracted month field was initially named simply `Month`, which did not clearly indicate which date field the month originated from and could create ambiguity when additional date attributes are introduced.
 
 **Transformation:**
-Renamed the field from **`Month`** to **`Reservation Month`**.
+Renamed the field from **`Month`** to **`reservation_month`**.
+
+![Renaming Field](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/02_power_query/Renaming_fields_appropriately/renaming.png)
 
 **Reason:**
 Clear and descriptive field names improve data-model readability and reduce ambiguity when working with multiple date-related attributes.
 
 **Result:**
 The field is now explicitly identified as `Reservation Month`, making its purpose clearer for subsequent modelling, DAX calculations, and dashboard development.
+
+![Renamed Field Result](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/02_power_query/Renaming_fields_appropriately/result.png)
 
 ---
 
