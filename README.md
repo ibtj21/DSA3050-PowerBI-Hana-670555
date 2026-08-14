@@ -262,6 +262,8 @@ Missing categorical values were handled consistently, reducing unexplained blank
 **Problem:**
 The `adr` (Average Daily Rate) field contained one negative value of **-6.38**. A negative daily hotel rate is not meaningful for the intended pricing analysis.
 
+![Negative ADR Value](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/02_power_query/Replacing%20Incorrect%20Values/negative_adr.png)
+
 **Transformation:**
 The negative ADR record was identified using a numeric filter and removed from the analytical dataset.
 
