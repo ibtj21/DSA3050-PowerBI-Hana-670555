@@ -366,7 +366,7 @@ Renamed the field from **`Month`** to **`reservation_month`**.
 Clear and descriptive field names improve data-model readability and reduce ambiguity when working with multiple date-related attributes.
 
 **Result:**
-The field is now explicitly identified as `Reservation Month`, making its purpose clearer for subsequent modelling, DAX calculations, and dashboard development.
+The field is now explicitly identified as `reservation_month`, making its purpose clearer for subsequent modelling, DAX calculations, and dashboard development.
 
 ![Renamed Field Result](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/02_power_query/Renaming_fields_appropriately/result.png)
 
@@ -386,7 +386,7 @@ The Power Query preparation stage demonstrated the following transformation cate
 |  6 | Creating Custom Columns           | Created `Total Stay Nights`                    |
 |  7 | Creating Conditional Columns      | Created `Cancellation Status`                  |
 |  8 | Extracting Information from Dates | Extracted month from `reservation_status_date` |
-|  9 | Renaming Fields Appropriately     | Renamed `Month` to `Reservation Month`         |
+|  9 | Renaming Fields Appropriately     | Renamed `Month` to `reservation_month`         |
 
 These transformations converted the raw dataset into a cleaner and more analysis-ready structure while retaining the information required for the subsequent **data modelling, DAX, and dashboard development stages**.
 
