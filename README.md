@@ -178,3 +178,183 @@ The following screenshot shows the initial loading of the raw dataset into Power
 > **Figure 1: Initial loading of the Hotel Booking Demand dataset into Power BI Desktop.**
 
 The subsequent stage focuses on profiling the imported data, identifying data-quality issues, and applying appropriate transformations in Power Query.
+
+# SECTION B: POWER QUERY – DATA CLEANING & TRANSFORMATION
+
+Power Query was used to prepare the raw Hotel Booking Demand dataset for analysis before developing the data model and DAX measures. The transformations were based on data-quality issues and analytical requirements identified during the initial inspection of the dataset.
+
+The following transformations were applied to improve data quality, consistency, usability, and analytical readiness.
+
+---
+
+## 1. Handling Errors — `children` Column
+
+**Problem:**
+The `children` column was already assigned the appropriate **Whole Number** data type, but four records contained the value `NA`. These non-numeric values resulted in `DataFormat.Error` when Power Query attempted to interpret the column as numeric.
+
+**Transformation:**
+Used **Replace Errors** on the `children` column and replaced the four error values with `null`.
+
+**Reason:**
+The `children` field represents a numerical count and should not contain text values. Replacing the errors with `null` preserves the affected records without incorrectly assuming that the missing value represents zero children.
+
+**Result:**
+The `children` column remained a valid **Whole Number** field and could be used in numerical calculations without conversion errors.
+
+---
+
+## 2. Removing Duplicates
+
+**Problem:**
+The raw dataset contained **31,994 exact duplicate rows**, meaning that identical records appeared more than once across the dataset.
+
+**Transformation:**
+Used **Remove Duplicates** in Power Query to identify and remove exact duplicate records.
+
+**Reason:**
+Duplicate records could artificially increase booking counts and distort analytical results, including cancellation rates, guest counts, and other KPI calculations.
+
+**Result:**
+The exact duplicate records were removed, leaving a cleaner dataset for subsequent analysis and modelling.
+
+---
+
+## 3. Handling Missing/Null Values
+
+**Problem:**
+Missing values were identified in several categorical fields, including `country`, `agent`, and `company`.
+
+**Transformation:**
+Missing values were handled using meaningful replacement categories:
+
+* `country` → `Unknown`
+* `agent` → `Not Recorded`
+* `company` → `Not Applicable`
+
+**Reason:**
+The affected booking records were not removed because the missing information in these fields did not make the entire booking unusable. Meaningful categories allow the records to remain available for analysis while distinguishing missing or non-applicable information from valid categories.
+
+**Result:**
+Missing categorical values were handled consistently, reducing unexplained blanks in subsequent analysis and visualizations while preserving the booking records.
+
+---
+
+## 4. Replacing Incorrect Values — `adr`
+
+**Problem:**
+The `adr` (Average Daily Rate) field contained one negative value of **-6.38**. A negative daily hotel rate is not meaningful for the intended pricing analysis.
+
+**Transformation:**
+The negative ADR record was identified using a numeric filter and removed from the analytical dataset.
+
+**Reason:**
+Retaining the invalid value could distort pricing-related calculations such as average ADR and other measures derived from the daily rate.
+
+**Result:**
+The invalid negative ADR record was removed, leaving valid ADR values for pricing and performance analysis.
+
+---
+
+## 5. Merging Columns — Creating `Arrival Date`
+
+**Problem:**
+Arrival information was distributed across three separate fields: `arrival_date_year`, `arrival_date_month`, and `arrival_date_day_of_month`. Using these fields separately would make date-based analysis less convenient.
+
+**Transformation:**
+Merged the arrival year, month, and day information to create a unified **Arrival Date** field.
+
+**Reason:**
+A single date field provides a more convenient basis for time-based filtering, trend analysis, and the development of the dedicated Date dimension in the data model.
+
+**Result:**
+The dataset contains a unified arrival date that can be used for chronological analysis and date-based relationships.
+
+---
+
+## 6. Creating Custom Columns — `Total Stay Nights`
+
+**Problem:**
+The duration of each booking was divided between `stays_in_weekend_nights` and `stays_in_week_nights`. Analysing the complete duration would therefore require combining the two fields repeatedly.
+
+**Transformation:**
+Created a custom column named **`Total Stay Nights`** using:
+
+`stays_in_weekend_nights + stays_in_week_nights`
+
+**Reason:**
+A single measure of total stay duration is more convenient for analysing booking behaviour, length of stay, and hotel demand.
+
+**Result:**
+Each booking now has a `Total Stay Nights` value representing the complete duration of the stay.
+
+---
+
+## 7. Creating Conditional Columns — `Cancellation Status`
+
+**Problem:**
+The `is_canceled` field represents cancellation using numeric values (`0` and `1`), which are less intuitive for business users when interpreting reports and dashboard visuals.
+
+**Transformation:**
+Created a conditional column named **`Cancellation Status`**:
+
+* `1` → `Cancelled`
+* `0` → `Not Cancelled`
+
+**Reason:**
+Descriptive categories are easier to interpret in filters, tables, charts, and KPI analysis than numeric binary codes.
+
+**Result:**
+The dataset now contains a business-friendly `Cancellation Status` field that can be used directly in Power BI analysis and visualizations.
+
+---
+
+## 8. Extracting Information from Dates — `Month`
+
+**Problem:**
+The `reservation_status_date` field contains a complete date, but month-level analysis requires an appropriate time component.
+
+**Transformation:**
+Extracted the **month** from `reservation_status_date` to create a new `Month` field.
+
+**Reason:**
+Monthly information supports analysis of reservation-status patterns and allows booking outcomes to be examined across different periods.
+
+**Result:**
+A month-level field was created from `reservation_status_date` for use in time-based analysis.
+
+---
+
+## 9. Renaming Fields Appropriately — `Reservation Month`
+
+**Problem:**
+The extracted month field was initially named simply `Month`, which did not clearly indicate which date field the month originated from and could create ambiguity when additional date attributes are introduced.
+
+**Transformation:**
+Renamed the field from **`Month`** to **`Reservation Month`**.
+
+**Reason:**
+Clear and descriptive field names improve data-model readability and reduce ambiguity when working with multiple date-related attributes.
+
+**Result:**
+The field is now explicitly identified as `Reservation Month`, making its purpose clearer for subsequent modelling, DAX calculations, and dashboard development.
+
+---
+
+## Power Query Transformation Summary
+
+The Power Query preparation stage demonstrated the following transformation categories:
+
+|  # | Transformation                    | Main Purpose                                   |
+| -: | --------------------------------- | ---------------------------------------------- |
+|  1 | Handling Errors                   | Resolved invalid `NA` values in `children`     |
+|  2 | Removing Duplicates               | Removed exact duplicate records                |
+|  3 | Handling Missing/Null Values      | Addressed missing categorical information      |
+|  4 | Replacing Incorrect Values        | Removed the invalid negative ADR value         |
+|  5 | Merging Columns                   | Created a unified `Arrival Date`               |
+|  6 | Creating Custom Columns           | Created `Total Stay Nights`                    |
+|  7 | Creating Conditional Columns      | Created `Cancellation Status`                  |
+|  8 | Extracting Information from Dates | Extracted month from `reservation_status_date` |
+|  9 | Renaming Fields Appropriately     | Renamed `Month` to `Reservation Month`         |
+
+These transformations converted the raw dataset into a cleaner and more analysis-ready structure while retaining the information required for the subsequent **data modelling, DAX, and dashboard development stages**.
+
