@@ -122,7 +122,21 @@ The main business problem investigated in this project is:
 
 > **How can hotel management better understand booking demand and cancellation behaviour in order to identify important patterns, customer segments, pricing trends, and areas requiring management attention?**
 
-The analysis will particularly investigate differences between the **City Hotel and Resort Hotel** and examine factors associated with booking cancellations, including lead time, market segment, distribution channel, customer type, deposit type, and pricing.
+The analysis focuses on understanding how hotel booking demand changes over time and how booking outcomes differ across the **City Hotel and Resort Hotel**. It examines booking volume, cancellation rates, market segments, customer types, distribution channels, pricing, room types, geographic patterns, and differences between repeated and non-repeated guests.
+
+A particular focus of the analysis is to identify factors associated with **booking cancellations**, including booking lead time and other characteristics of the reservation. The project will also examine **Average Daily Rate (ADR)** across different hotel, room, seasonal, and market segments to identify pricing patterns.
+
+The analysis is intended to provide hotel management with a clearer view of:
+
+- **Booking demand and trends over time**
+- **Differences in performance between the two hotels**
+- **Cancellation patterns and their associated factors**
+- **The contribution of different market and customer segments**
+- **Pricing patterns based on ADR**
+- **Geographic distribution of bookings**
+- **Differences between repeated and non-repeated guests**
+
+The overall objective is to transform the raw hotel booking data into **actionable business intelligence** that can help management identify important patterns, understand cancellation behaviour, and determine areas that may require further investigation or management attention.
 
 ---
 
