@@ -215,11 +215,17 @@ The raw dataset contained **31,994 exact duplicate rows**, meaning that identica
 **Transformation:**
 Used **Remove Duplicates** in Power Query to identify and remove exact duplicate records.
 
+![Removing Duplicates](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/02_power_query/remove_duplicates/remove_duplicates.png)
+
 **Reason:**
 Duplicate records could artificially increase booking counts and distort analytical results, including cancellation rates, guest counts, and other KPI calculations.
 
 **Result:**
 The exact duplicate records were removed, leaving a cleaner dataset for subsequent analysis and modelling.
+
+![Rows After Duplicate Removal](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/02_power_query/remove_duplicates/after_removal.png)
+
+**Figure:** Dataset after removing exact duplicate records, leaving **87,396 rows**.
 
 ---
 
