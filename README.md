@@ -420,6 +420,10 @@ The fact table also contains foreign keys linking each booking to the relevant d
 
 The original `hotels` query was retained as a **staging/source query** in Power Query but was not used as a final analytical table. This prevents the final model from containing both the original flat table and the analytical fact table.
 
+Why FactBooking Was Selected
+
+FactBooking was selected as the central fact table because each record represents an individual hotel booking and contains the measurable values and booking-level information required for the analysis. It includes measures such as ADR, lead time, stay duration, guest counts, cancellations, and special requests, making it the main table from which business performance indicators can be calculated.
+
 ---
 
 ## 2. Creation of Dimension Tables
@@ -435,7 +439,9 @@ A **Star Schema** was developed around `FactBooking`. Five dimensions were creat
 
 **Key:** `HotelKey`
 
-This dimension was created to allow hotel-level comparison and filtering throughout the report. It supports analysis of booking volume, cancellation rates, ADR, and other performance indicators between the two hotel types.
+Why DimHotel Was Created
+
+DimHotel was created to separate hotel-level descriptive information from the booking transactions. It allows bookings to be filtered and compared between City Hotel and Resort Hotel and supports analysis of differences in demand, cancellations, pricing, and other performance indicators.
 
 ---
 
@@ -445,7 +451,9 @@ This dimension was created to allow hotel-level comparison and filtering through
 
 **Key:** `CountryKey`
 
-This dimension was created to support geographical analysis, including identifying the countries contributing the largest number of bookings and comparing booking and cancellation patterns across locations.
+Why DimCountry Was Created
+
+DimCountry was created to support geographic analysis of booking behaviour. Separating country information into a dimension allows the report to analyse booking volume and cancellation patterns by country while keeping the fact table focused on booking-level information.
 
 ---
 
@@ -455,7 +463,9 @@ This dimension was created to support geographical analysis, including identifyi
 
 **Key:** `RoomKey`
 
-This dimension was created to analyse demand and performance by the room type originally reserved by the guest.
+Why DimRoom Was Created
+
+DimRoom was created from the reserved room types to provide a dedicated analytical view of room demand. It allows the report to examine how bookings are distributed across reserved room types while keeping the actual assigned room type in FactBooking for comparison and further analysis.
 
 The `assigned_room_type` field remains in `FactBooking` because it represents the room actually assigned to the guest. Keeping the two fields separate also allows later analysis of differences between reserved and assigned room types.
 
@@ -467,7 +477,9 @@ The `assigned_room_type` field remains in `FactBooking` because it represents th
 
 **Key:** `MarketSegmentKey`
 
-This dimension was created to support analysis of booking demand, cancellations, and pricing across different market segments.
+Why DimMarketSegment Was Created
+
+DimMarketSegment was created to provide a structured way of analysing bookings according to their market segment. It supports comparisons of booking volume, cancellation behaviour, and pricing across different segments without unnecessarily creating separate dimensions for every low-cardinality categorical field.
 
 Fields such as `meal`, `deposit_type`, `distribution_channel`, and `customer_type` were retained as booking-level attributes rather than creating unnecessary additional dimensions. This keeps the model relatively simple while preserving the information required by the analytical questions.
 
@@ -492,7 +504,9 @@ The Date dimension contains attributes such as:
 * `Day of Week`
 * `Day of Week Number`
 
-The Date table provides a consistent structure for time-based filtering, trend analysis, and future DAX time-intelligence calculations.
+Why DimDate Was Created
+
+DimDate was created because the project requires extensive time-based analysis. It provides a consistent set of year, quarter, month, week, and day attributes that can be used to analyse booking trends and support DAX time-intelligence calculations.
 
 ---
 
