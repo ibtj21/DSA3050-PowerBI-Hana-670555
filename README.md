@@ -197,6 +197,8 @@ The `children` column was already assigned the appropriate **Whole Number** data
 **Transformation:**
 Used **Replace Errors** on the `children` column and replaced the four error values with `null`.
 
+![Replace Errors](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/02_power_query/Handling_errors/replace_errors.png)
+
 **Reason:**
 The `children` field represents a numerical count and should not contain text values. Replacing the errors with `null` preserves the affected records without incorrectly assuming that the missing value represents zero children.
 
