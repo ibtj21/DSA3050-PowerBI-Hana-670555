@@ -388,6 +388,13 @@ The Power Query preparation stage demonstrated the following transformation cate
 |  8 | Extracting Information from Dates | Extracted month from `reservation_status_date` |
 |  9 | Renaming Fields Appropriately     | Renamed `Month` to `reservation_month`         |
 
+
+### Power Query Applied Steps
+
+The following screenshot summarizes the sequence of transformations applied during the Power Query data-cleaning and preparation stage. The Applied Steps pane provides evidence that the raw dataset was systematically transformed before being used in the analytical model.
+
+![Power Query Applied Steps](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/02_power_query/Applied_steps.png)
+
 ## *Transition to Data Modelling*
 
 The Power Query stage transformed the raw Hotel Booking Demand dataset into a cleaner and analysis-ready structure by addressing data-quality issues and creating useful analytical fields. With the data prepared, the next stage is **data modelling**, where the cleaned data will be organized into an appropriate analytical structure, relationships will be established between tables, and a dedicated Date dimension will be created to support efficient analysis.
