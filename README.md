@@ -681,7 +681,7 @@ The final analytical model therefore consists of:
 
 The resulting model provides a structured foundation for the next stages of the project. The dimension tables provide descriptive and filtering context, while `FactBooking` provides the transactional booking data and measures that will be used to develop the project's **DAX calculations, KPIs, visualizations, and business insights**.
 
-### Transition to DAX & Data Visualization
+## *Transition to DAX*
 
 With the analytical model established, the next stage is to develop **DAX measures and calculated indicators** using the relationships and filter context provided by the model. These measures will then feed the Power BI visualizations and dashboards used to investigate booking demand, cancellation behaviour, pricing, customer segments, and other business questions identified earlier in the project.
 
