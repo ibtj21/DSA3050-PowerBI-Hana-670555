@@ -32,7 +32,7 @@ The original article released two separate hotel datasets:
 - **H1 – Resort Hotel**
 - **H2 – City Hotel**
 
-For this project, a merged version of the two hotels—combined and lightly re-typed by Thomas Mock and Antoine Bichat for the **#TidyTuesday** project (`rfordatascience/tidytuesday`, 2020-02-11)—was used as the working file.
+For this project, a merged version of the two hotels—combined and lightly re-typed by Thomas Mock and Antoine Bichat for the **#TidyTuesday** project (`rfordatascience/tidytuesday`, 2020-02-11)—was used as the working file.Both hotels in this dataset are located in Portugal.
 
 **Working dataset:**  
 [Hotel Booking Demand Dataset – TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/main/data/2020/2020-02-11/hotels.csv)
