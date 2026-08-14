@@ -28,11 +28,9 @@ The dataset contains booking records from two hotels:
 - Resort Hotel
 - City Hotel
 
+ For this project, a merged version of the two hotels—combined and lightly re-typed by Thomas Mock and Antoine Bichat for the **#TidyTuesday** project (rfordatascience/tidytuesday, 2020-02-11)—was used as the working file, accessed via GitHub at [https://github.com/rfordatascience/tidytuesday/blob/main/data/2020/2020-02-11/hotels.csv](https://github.com/rfordatascience/tidytuesday/blob/main/data/2020/2020-02-11/hotels.csv).
+ 
 The dataset covers hotel arrivals from **2015 to 2017** and contains **119,390 records and 32 variables**.
-
-**Original dataset source:**  
-[Hotel Booking Demand Datasets – ISCTE-IUL](https://repositorio.iscte-iul.pt/handle/10071/16929)
-
 The original publication provides the documentation and description of the dataset and its variables.
 
 ---
