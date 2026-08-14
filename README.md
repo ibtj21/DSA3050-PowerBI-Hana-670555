@@ -7,7 +7,7 @@
 **Software:** Microsoft Power BI Desktop  
 **Dataset:** Hotel Booking Demand  
 
-![Hotel Booking Dataset](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/hotel.png)
+![Hotel Booking Dataset](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/01_raw_data/hotel.png)
 
 ---
 
