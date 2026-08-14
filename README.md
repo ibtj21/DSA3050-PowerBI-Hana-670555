@@ -21,51 +21,58 @@ The main objective of the project is to transform the raw booking data into mean
 
 ---
 
-## 2. Dataset Source
+# SECTION A: DATASET SELECTION & UNDERSTANDING
 
-The dataset used in this project is the **Hotel Booking Demand dataset** originally documented by Antonio, Almeida, and Nunes in the research publication *Hotel Booking Demand Datasets*.
+## 1. The Source of the Dataset
 
-The dataset contains booking records from two hotels:
+The dataset used in this project is the **Hotel Booking Demand dataset**, originally documented by Antonio, de Almeida, and Nunes (2019) in the research publication *Hotel Booking Demand Datasets*, published in *Data in Brief* (DOI: 10.1016/j.dib.2018.11.126).
 
-- Resort Hotel
-- City Hotel
+The original article released two separate hotel datasets:
 
- For this project, a merged version of the two hotels—combined and lightly re-typed by Thomas Mock and Antoine Bichat for the **#TidyTuesday** project (rfordatascience/tidytuesday, 2020-02-11)—was used as the working file, accessed via GitHub at [https://github.com/rfordatascience/tidytuesday/blob/main/data/2020/2020-02-11/hotels.csv](https://github.com/rfordatascience/tidytuesday/blob/main/data/2020/2020-02-11/hotels.csv).
- 
-The dataset covers hotel arrivals from **2015 to 2017** and contains **119,390 records and 32 variables**.
-The original publication provides the documentation and description of the dataset and its variables.
+- **H1 – Resort Hotel**
+- **H2 – City Hotel**
 
----
+For this project, a merged version of the two hotels—combined and lightly re-typed by Thomas Mock and Antoine Bichat for the **#TidyTuesday** project (`rfordatascience/tidytuesday`, 2020-02-11)—was used as the working file.
 
-## 3. What the Dataset Represents
+**Working dataset:**  
+[Hotel Booking Demand Dataset – TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/main/data/2020/2020-02-11/hotels.csv)
 
-The dataset represents hotel booking information collected from hotel Property Management Systems. Each record contains information about a hotel booking, including whether the booking was cancelled, how far in advance it was made, the length of stay, guest characteristics, booking channels, room types, pricing, and reservation status.
-
-The dataset therefore provides an opportunity to investigate both **booking demand and cancellation behaviour**, as well as differences between the two hotels and different customer and market segments.
+The dataset contains **119,390 records and 32 variables**, covering hotel arrivals from **2015 to 2017**.
 
 ---
 
-## 4. Why This Dataset Was Selected
+## 2. What the Dataset Represents
 
-The Hotel Booking Demand dataset was selected because it satisfies the main dataset requirements for the examination while remaining sufficiently understandable for meaningful Business Intelligence analysis.
+The dataset represents hotel booking information collected from hotel Property Management Systems. Each record contains information about a hotel booking, including cancellation status, booking lead time, arrival details, length of stay, guest characteristics, booking channels, room types, pricing, and reservation status.
 
-It contains:
+The dataset covers bookings from two hotel types:
+
+- **Resort Hotel**
+- **City Hotel**
+
+It provides information suitable for analysing hotel booking demand, cancellation behaviour, pricing patterns, customer characteristics, and differences between the two hotels.
+
+---
+
+## 3. Why the Dataset Was Selected
+
+The Hotel Booking Demand dataset was selected because it satisfies the main dataset requirements for the DSA 3050A examination while remaining sufficiently understandable for meaningful Business Intelligence analysis.
+
+The dataset provides:
 
 - More than **20,000 records**
 - Multiple numerical variables
 - Multiple categorical variables
 - Date-related information
 - Variables suitable for KPI calculations
-- Information supporting different dimensions of analysis
+- Multiple dimensions for analysis, including hotel, country, market segment, customer type, room type, and booking channel
 - Data-quality issues that can be investigated and addressed using Power Query
 
-The dataset also provides a strong business problem around **hotel booking performance and cancellations**, allowing the project to demonstrate data preparation, modelling, DAX calculations, dashboard design, and business interpretation.
+The dataset also provides a clear business problem around **hotel booking performance and cancellation behaviour**, creating opportunities to demonstrate data preparation, data modelling, DAX calculations, dashboard design, and business interpretation.
 
 ---
 
-## 5. Main Variables
-
-Some of the main variables used in the analysis include:
+## 4. The Main Variables Available
 
 | Variable | Description |
 |---|---|
@@ -74,6 +81,7 @@ Some of the main variables used in the analysis include:
 | `lead_time` | Number of days between booking and arrival |
 | `arrival_date_year` | Year of arrival |
 | `arrival_date_month` | Month of arrival |
+| `arrival_date_week_number` | Week number of arrival |
 | `arrival_date_day_of_month` | Day of arrival |
 | `stays_in_weekend_nights` | Number of weekend nights |
 | `stays_in_week_nights` | Number of weekday nights |
@@ -81,37 +89,43 @@ Some of the main variables used in the analysis include:
 | `children` | Number of children |
 | `babies` | Number of babies |
 | `country` | Country of the guest |
+| `meal` | Meal type selected |
 | `market_segment` | Market segment of the booking |
-| `distribution_channel` | Booking distribution channel |
+| `distribution_channel` | Distribution channel used for the booking |
+| `is_repeated_guest` | Indicates whether the guest is a returning guest |
 | `reserved_room_type` | Room type originally reserved |
 | `assigned_room_type` | Room type assigned |
 | `deposit_type` | Type of deposit |
 | `customer_type` | Type of customer |
 | `adr` | Average Daily Rate |
+| `booking_changes` | Number of booking changes |
+| `previous_cancellations` | Number of previous cancellations |
+| `previous_bookings_not_canceled` | Number of previous bookings that were not cancelled |
+| `days_in_waiting_list` | Number of days spent on the waiting list |
+| `required_car_parking_spaces` | Number of required parking spaces |
 | `total_of_special_requests` | Number of special requests |
 | `reservation_status` | Final reservation status |
-
-Additional calculated fields will be created during the data preparation and modelling stages where appropriate.
+| `reservation_status_date` | Date of the final reservation status |
 
 ---
 
-## 6. Business / Analytical Problem
+## 5. The Business / Analytical Problem to Be Investigated
 
 The main business problem investigated in this project is:
 
 > **How can hotel management better understand booking demand and cancellation behaviour in order to identify important patterns, customer segments, pricing trends, and areas requiring management attention?**
 
-The analysis will particularly investigate differences between the two hotels and examine factors that are associated with booking cancellations.
+The analysis will particularly investigate differences between the **City Hotel and Resort Hotel** and examine factors associated with booking cancellations, including lead time, market segment, distribution channel, customer type, deposit type, and pricing.
 
 ---
 
-## 7. Analytical Questions
+## 6. Analytical Questions
 
 The Power BI solution will aim to answer the following questions:
 
 1. **How does hotel booking demand change over time?**
 
-2. **What is the cancellation rate, and how does it differ between the City Hotel and Resort Hotel?**
+2. **What is the overall cancellation rate, and how does it differ between the City Hotel and Resort Hotel?**
 
 3. **Which market segments, customer types, and distribution channels contribute the most bookings?**
 
@@ -119,30 +133,12 @@ The Power BI solution will aim to answer the following questions:
 
 5. **Which factors are associated with higher booking cancellation rates?**
 
-6. **How do lead time and booking characteristics relate to cancellations?**
+6. **How does booking lead time relate to cancellation behaviour?**
 
 7. **How do booking patterns differ between the City Hotel and Resort Hotel?**
 
 8. **Which countries contribute the highest number of bookings?**
 
-9. **How do repeat guests differ from non-repeat guests in their booking behaviour?**
+9. **How does booking behaviour differ between repeated and non-repeated guests?**
 
-10. **What business areas require management attention based on the observed booking and cancellation patterns?**
-
----
-
-## 8. BI Development Approach
-
-The project will follow a complete Business Intelligence workflow:
-
-**Raw Dataset → Data Profiling → Power Query → Data Model → DAX Measures → Interactive Dashboards → Business Insights**
-
-The solution will demonstrate:
-
-- Data acquisition and understanding
-- Data cleaning and transformation using Power Query
-- Data modelling and relationships
-- DAX calculations and analytical measures
-- Interactive dashboard development
-- Data visualization and storytelling
-- Business interpretation and recommendations
+10. **Which areas of hotel booking performance require management attention?**
