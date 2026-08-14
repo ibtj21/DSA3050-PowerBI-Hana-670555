@@ -52,6 +52,14 @@ The dataset covers bookings from two hotel types:
 
 It provides information suitable for analysing hotel booking demand, cancellation behaviour, pricing patterns, customer characteristics, and differences between the two hotels.
 
+The following screenshots show the raw Hotel Booking Demand dataset used as the starting point for the analysis.
+
+![Raw Dataset 1](https://raw.githubusercontent.com/ibtj21/DSA3050-PowerBI-Hana-670555/main/screenshots/raw_data1.png)
+
+![Raw Dataset 2](https://raw.githubusercontent.com/ibtj21/DSA3050-PowerBI-Hana-670555/main/screenshots/raw_data2.png)
+
+![Raw Dataset 3](https://raw.githubusercontent.com/ibtj21/DSA3050-PowerBI-Hana-670555/main/screenshots/raw_data3.png)
+
 ---
 
 ## 3. Why the Dataset Was Selected
