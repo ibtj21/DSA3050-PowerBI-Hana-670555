@@ -394,3 +394,306 @@ The Power Query stage transformed the raw Hotel Booking Demand dataset into a cl
 
 This stage will provide the foundation for developing **DAX measures, interactive dashboards, and meaningful business insights**.
 
+
+# SECTION C: DATA MODELLING
+
+## 1. Identification of the Main Fact Table
+
+The main fact table in the analytical model is **`FactBooking`**. It represents the central booking-level transactional data, where each row corresponds to an individual hotel booking record.
+
+`FactBooking` contains the numerical measures and booking-level attributes required for analysis, including cancellation status, lead time, stay duration, guest counts, Average Daily Rate (ADR), booking changes, previous booking behaviour, special requests, and reservation status.
+
+The fact table also contains foreign keys linking each booking to the relevant dimension tables:
+
+* `HotelKey`
+* `CountryKey`
+* `RoomKey`
+* `MarketSegmentKey`
+* `ArrivalDateKey`
+
+The original `hotels` query was retained as a **staging/source query** in Power Query but was not used as a final analytical table. This prevents the final model from containing both the original flat table and the analytical fact table.
+
+---
+
+## 2. Creation of Dimension Tables
+
+A **Star Schema** was developed around `FactBooking`. Five dimensions were created based on the analytical requirements of the project:
+
+### DimHotel
+
+`DimHotel` contains the unique hotel categories:
+
+* City Hotel
+* Resort Hotel
+
+**Key:** `HotelKey`
+
+This dimension was created to allow hotel-level comparison and filtering throughout the report. It supports analysis of booking volume, cancellation rates, ADR, and other performance indicators between the two hotel types.
+
+---
+
+### DimCountry
+
+`DimCountry` contains the unique country values associated with bookings.
+
+**Key:** `CountryKey`
+
+This dimension was created to support geographical analysis, including identifying the countries contributing the largest number of bookings and comparing booking and cancellation patterns across locations.
+
+---
+
+### DimRoom
+
+`DimRoom` contains unique **reserved room types**.
+
+**Key:** `RoomKey`
+
+This dimension was created to analyse demand and performance by the room type originally reserved by the guest.
+
+The `assigned_room_type` field remains in `FactBooking` because it represents the room actually assigned to the guest. Keeping the two fields separate also allows later analysis of differences between reserved and assigned room types.
+
+---
+
+### DimMarketSegment
+
+`DimMarketSegment` contains the unique market segments represented in the booking data.
+
+**Key:** `MarketSegmentKey`
+
+This dimension was created to support analysis of booking demand, cancellations, and pricing across different market segments.
+
+Fields such as `meal`, `deposit_type`, `distribution_channel`, and `customer_type` were retained as booking-level attributes rather than creating unnecessary additional dimensions. This keeps the model relatively simple while preserving the information required by the analytical questions.
+
+---
+
+### DimDate
+
+A dedicated **`DimDate`** table was created because the dataset contains extensive date information and the project requires time-based analysis.
+
+**Key:** `DateKey`
+
+The Date dimension contains attributes such as:
+
+* `Date`
+* `DateKey`
+* `Year`
+* `Quarter`
+* `Month Number`
+* `Month Name`
+* `Week Number`
+* `Day`
+* `Day of Week`
+* `Day of Week Number`
+
+The Date table provides a consistent structure for time-based filtering, trend analysis, and future DAX time-intelligence calculations.
+
+---
+
+## 3. Primary and Foreign Keys
+
+Numeric keys were created for the dimension tables to provide unique identifiers for relationships.
+
+| Table              | Primary Key        |
+| ------------------ | ------------------ |
+| `DimHotel`         | `HotelKey`         |
+| `DimCountry`       | `CountryKey`       |
+| `DimRoom`          | `RoomKey`          |
+| `DimMarketSegment` | `MarketSegmentKey` |
+| `DimDate`          | `DateKey`          |
+
+The corresponding foreign keys were added to `FactBooking`:
+
+| FactBooking Foreign Key | Related Dimension                    |
+| ----------------------- | ------------------------------------ |
+| `HotelKey`              | `DimHotel[HotelKey]`                 |
+| `CountryKey`            | `DimCountry[CountryKey]`             |
+| `RoomKey`               | `DimRoom[RoomKey]`                   |
+| `MarketSegmentKey`      | `DimMarketSegment[MarketSegmentKey]` |
+| `ArrivalDateKey`        | `DimDate[DateKey]`                   |
+
+Using numeric keys provides a clear and consistent basis for establishing the relationships between the fact table and dimension tables.
+
+---
+
+## 4. Table Relationships
+
+The model follows a Star Schema structure in which the dimension tables provide descriptive information and the fact table contains the booking records and measures.
+
+The intended relationships are:
+
+```text
+DimHotel[HotelKey]
+        1
+        |
+        *
+FactBooking[HotelKey]
+
+
+DimCountry[CountryKey]
+        1
+        |
+        *
+FactBooking[CountryKey]
+
+
+DimRoom[RoomKey]
+        1
+        |
+        *
+FactBooking[RoomKey]
+
+
+DimMarketSegment[MarketSegmentKey]
+        1
+        |
+        *
+FactBooking[MarketSegmentKey]
+
+
+DimDate[DateKey]
+        1
+        |
+        *
+FactBooking[ArrivalDateKey]
+```
+
+Each dimension contains unique key values, while the corresponding key can occur multiple times in `FactBooking` because many bookings can belong to the same hotel, country, room type, market segment, or date.
+
+---
+
+## 5. Relationship Cardinality
+
+All dimension-to-fact relationships use **one-to-many (1:*) cardinality**.
+
+For example:
+
+> One hotel can be associated with many booking records, while each booking belongs to one hotel.
+
+Therefore:
+
+`DimHotel (1) → FactBooking (*)`
+
+The same principle applies to the country, room, market segment, and date dimensions.
+
+The one-to-many structure avoids unnecessary many-to-many relationships and provides a clear analytical path between descriptive dimensions and booking records.
+
+---
+
+## 6. Cross-Filter Direction
+
+The relationships are designed with **Single** cross-filter direction, with filters flowing from the dimension tables toward `FactBooking`.
+
+For example:
+
+```text
+DimHotel
+   ↓
+FactBooking
+```
+
+This allows a selection such as **Resort Hotel** in a slicer to filter the related booking records while avoiding unnecessary reverse-filter paths.
+
+Single-direction filtering was selected to reduce the possibility of ambiguous filter paths and to maintain a clear Star Schema structure.
+
+---
+
+## 7. Dedicated Date Table
+
+The `DimDate` table was created as a dedicated Date dimension because the project requires analysis across different time periods.
+
+The main active date relationship connects:
+
+`DimDate[DateKey]`
+
+to:
+
+`FactBooking[ArrivalDateKey]`
+
+This allows date attributes such as year, quarter, month, and week to filter booking records consistently.
+
+The original arrival date components were combined during Power Query into an `Arrival Date` field, from which `ArrivalDateKey` was subsequently created for the relationship with `DimDate`.
+
+The `reservation_status_date` was retained separately because it represents a different business event from the arrival date: it records the date associated with the final reservation status. It was therefore not treated as a replacement for the booking arrival date.
+
+---
+
+## 8. Appropriate Data Types
+
+Key fields were created using numeric whole-number data types so that corresponding primary and foreign key fields use compatible types.
+
+Examples include:
+
+* `HotelKey` → Whole Number
+* `CountryKey` → Whole Number
+* `RoomKey` → Whole Number
+* `MarketSegmentKey` → Whole Number
+* `DateKey` → Whole Number
+* `ArrivalDateKey` → Whole Number
+* `Arrival Date` → Date
+* `ADR` → Decimal Number
+* Booking counts and numerical attributes → Whole Number where appropriate
+
+Using compatible data types for relationship fields ensures that the keys can be matched correctly and supports reliable filtering and analysis.
+
+---
+
+## 9. Clear Table and Field Naming
+
+The model uses descriptive and consistent names so that the purpose of each table and field is clear.
+
+Examples include:
+
+* `FactBooking`
+* `DimHotel`
+* `DimCountry`
+* `DimRoom`
+* `DimMarketSegment`
+* `DimDate`
+* `HotelKey`
+* `CountryKey`
+* `RoomKey`
+* `MarketSegmentKey`
+* `ArrivalDateKey`
+* `Total Stay Nights`
+* `Cancellation Status`
+
+The original staging query, `hotels`, remains separate from the analytical model and is not loaded as a final model table.
+
+---
+
+## 10. Modelling Decisions and Challenges
+
+One modelling challenge was deciding which fields should become dimensions and which should remain as attributes within the fact table. Not every categorical field was converted into a separate dimension. Dimensions were created only where they provided clear analytical value and supported the project's business questions.
+
+The `agent` and `company` fields were also excluded from the final analytical model. Although they were handled during the Power Query cleaning stage, they were not central to the project's analytical objectives, and `company` contained a very high proportion of missing values. Removing them from the final model reduced unnecessary complexity while retaining the fields required for the planned analysis.
+
+Another modelling decision involved the room fields. `reserved_room_type` was used to create `DimRoom`, while `assigned_room_type` remains in `FactBooking`. This preserves the distinction between the room originally requested and the room ultimately assigned.
+
+The original `hotels` table was also kept as a staging query rather than loaded into the final model. This avoids duplicating the fact data and ensures that the final model is based on a clear Star Schema.
+
+---
+
+## Model Structure
+
+The final analytical model therefore consists of:
+
+```text
+                         DimDate
+                            |
+                            | 1 : *
+                            |
+DimHotel  ---------------- FactBooking ----------------  DimCountry
+    |                          |                              |
+    | 1 : *                    |                              | 1 : *
+    |                          |
+DimRoom ---------------- DimMarketSegment
+       1 : *                    1 : *
+```
+
+The resulting model provides a structured foundation for the next stages of the project. The dimension tables provide descriptive and filtering context, while `FactBooking` provides the transactional booking data and measures that will be used to develop the project's **DAX calculations, KPIs, visualizations, and business insights**.
+
+### Transition to DAX & Data Visualization
+
+With the analytical model established, the next stage is to develop **DAX measures and calculated indicators** using the relationships and filter context provided by the model. These measures will then feed the Power BI visualizations and dashboards used to investigate booking demand, cancellation behaviour, pricing, customer segments, and other business questions identified earlier in the project.
+
+
