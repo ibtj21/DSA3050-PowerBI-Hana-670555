@@ -1,6 +1,4 @@
-# DSA3050-PowerBI-Hana-670555
-Hotel Booking Demand Analysis using Power BI to explore bookings, cancellations, pricing, and customer patterns through data cleaning, modelling, DAX, and interactive dashboards
-# Hotel Booking Demand Analysis
+# Hotel Booking Demand Analysis in Power BI
 
 ## DSA 3050A – Business Intelligence & Data Visualization
 
