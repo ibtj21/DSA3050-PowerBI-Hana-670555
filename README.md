@@ -388,5 +388,9 @@ The Power Query preparation stage demonstrated the following transformation cate
 |  8 | Extracting Information from Dates | Extracted month from `reservation_status_date` |
 |  9 | Renaming Fields Appropriately     | Renamed `Month` to `reservation_month`         |
 
-These transformations converted the raw dataset into a cleaner and more analysis-ready structure while retaining the information required for the subsequent **data modelling, DAX, and dashboard development stages**.
+## *Transition to Data Modelling*
+
+The Power Query stage transformed the raw Hotel Booking Demand dataset into a cleaner and analysis-ready structure by addressing data-quality issues and creating useful analytical fields. With the data prepared, the next stage is **data modelling**, where the cleaned data will be organized into an appropriate analytical structure, relationships will be established between tables, and a dedicated Date dimension will be created to support efficient analysis.
+
+This stage will provide the foundation for developing **DAX measures, interactive dashboards, and meaningful business insights**.
 
