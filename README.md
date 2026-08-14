@@ -283,6 +283,8 @@ Arrival information was distributed across three separate fields: `arrival_date_
 **Transformation:**
 Merged the arrival year, month, and day information to create a unified **Arrival Date** field.
 
+![Merging Arrival Date Columns](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/02_power_query/Merge_columns/merge_columns.png)
+
 **Reason:**
 A single date field provides a more convenient basis for time-based filtering, trend analysis, and the development of the dedicated Date dimension in the data model.
 
@@ -300,6 +302,8 @@ The duration of each booking was divided between `stays_in_weekend_nights` and `
 Created a custom column named **`Total Stay Nights`** using:
 
 `stays_in_weekend_nights + stays_in_week_nights`
+
+![Creating Custom Column - Total Stay Nights](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/02_power_query/Creating_custom_columns/custom_column.png)
 
 **Reason:**
 A single measure of total stay duration is more convenient for analysing booking behaviour, length of stay, and hotel demand.
