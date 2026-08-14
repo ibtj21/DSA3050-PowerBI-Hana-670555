@@ -163,3 +163,18 @@ The Power BI solution will aim to answer the following questions:
 9. **How does booking behaviour differ between repeated and non-repeated guests?**
 
 10. **Which areas of hotel booking performance require management attention?**
+
+
+---
+
+## *Transition to Data Preparation*
+
+Having established the dataset, its characteristics, and the key analytical questions, the next stage is to begin the **Business Intelligence development process**. The raw dataset is first loaded into **Microsoft Power BI Desktop**, where its structure and data quality can be examined before applying any cleaning and transformation steps using Power Query.
+
+The following screenshot shows the initial loading of the raw dataset into Power BI.
+
+![Loading Raw Dataset into Power BI](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/load_data.png)
+
+> **Figure 1: Initial loading of the Hotel Booking Demand dataset into Power BI Desktop.**
+
+The subsequent stage focuses on profiling the imported data, identifying data-quality issues, and applying appropriate transformations in Power Query.
