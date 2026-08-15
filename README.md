@@ -1057,4 +1057,96 @@ The use of `CALCULATE()`, `ALL()`, `ALLSELECTED()`, variables, `RANKX()`, and ti
 
 The DAX stage produced meaningful measures for analysing bookings, cancellations, pricing, guest behaviour, and performance trends. These measures now provide the foundation for the next stage: **interactive Power BI visualizations and dashboards**.
 
+# SECTION E: PROFESSIONAL POWER BI DASHBOARDS
+
+Three interactive Power BI report pages were developed to move from **overall performance to detailed analysis and finally diagnostic insights**. The pages were designed as a connected analytical story rather than as separate collections of charts.
+
+## Page 1: Executive Overview
+
+The **Executive Overview** provides management with a high-level view of hotel booking performance. It uses KPI cards for `Total Bookings`, `Cancellation Rate %`, `Average ADR`, `Total Nights`, and `Estimated Booking Revenue`.
+
+The page also includes a **booking demand trend over time**, a **hotel performance comparison**, **cancellation rate by hotel**, and **bookings by market segment**. Slicers for Year, Hotel, Country, and Market Segment allow users to interactively filter the report.
+
+The page answers the main question:
+
+> **What happened to overall hotel booking performance?**
+![Executive Overview Dashboard](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/05_dashboard/dashboard_overview.png)
+
+---
+
+## Page 2: Booking & Cancellation Analysis
+
+The second page focuses on **booking behaviour and cancellation patterns** in greater detail. It includes KPI cards for `Average Lead Time`, `Cancelled Bookings`, `Cancellation Rate %`, and `Repeat Guest Rate %`.
+
+The analysis uses a **reservation-status bar chart**, a **country map showing booking distribution**, a **market-segment cancellation chart**, and a **lead-time versus cancellation-rate scatter plot**. These visuals allow users to investigate where bookings originate and how cancellation behaviour varies across different booking characteristics.
+
+The page answers:
+
+> **Where is booking demand concentrated, and which patterns are associated with cancellations?**
+
+![Booking & Cancellation Analysis Dashboard](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/05_dashboard/dashboard_analysis.png)
+
+---
+
+## Page 3: Deeper Diagnostic Insights
+
+The third page moves from descriptive analysis to **diagnostic analysis**. Its purpose is to investigate factors that may help explain booking cancellations rather than simply reporting cancellation totals.
+
+A **Key Influencers** visual was used to analyse `is_canceled` against booking-level attributes such as deposit type, repeat-guest status, lead time, market segment, distribution channel, customer type, and booking changes.
+
+For example, the analysis identifies booking characteristics associated with a higher likelihood of cancellation, allowing management to move from:
+
+> **What is happening?**
+
+to:
+
+> **What factors may be contributing to it?**
+
+This page therefore provides the deeper analytical perspective required for the diagnostic stage of the report.
+
+![Deeper Diagnostic Insights Dashboard](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/05_dashboard/dashboard_insights.png)
+
+---
+
+## Dashboard Design and Quality
+
+A consistent visual structure was maintained across the report through aligned visuals, consistent spacing, readable fonts, and clear visual hierarchy. Each page uses a controlled colour palette, with cancellation-related visuals using a distinct warning colour to communicate meaning rather than decoration.
+
+Visual types were selected according to the analytical question. Line charts were used for trends, bar and column charts for comparisons, maps for geographic distribution, scatter plots for relationships, KPI cards for headline metrics, and the Key Influencers visual for diagnostic analysis.
+
+---
+
+## Interactivity
+
+The report demonstrates meaningful Power BI interactivity through:
+
+* **Slicers** for Year, Hotel, Country, and Market Segment.
+* **Cross-filtering and cross-highlighting** between report visuals.
+* **Page navigation buttons** connecting the Executive Overview, Booking & Cancellation Analysis, and Deeper Diagnostic Insights pages.
+
+These features allow users to move beyond static charts and interactively explore the booking data.
+
+---
+
+## Dashboard Storytelling
+
+The three pages were intentionally designed to follow a progressive analytical story:
+
+```text
+What happened?
+        ↓
+Executive Overview
+        ↓
+Where did it happen?
+        ↓
+Booking & Cancellation Analysis
+        ↓
+Why is it happening?
+        ↓
+Deeper Diagnostic Insights
+        ↓
+What requires attention?
+```
+
+The resulting report moves from **headline performance**, to **detailed patterns**, and finally to **potential drivers of cancellation**, providing a coherent path from business overview to deeper analytical investigation.
 
