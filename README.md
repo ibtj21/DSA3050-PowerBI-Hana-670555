@@ -706,4 +706,355 @@ The resulting model provides a structured foundation for the next stages of the 
 
 With the analytical model established, the next stage is to develop **DAX measures and calculated indicators** using the relationships and filter context provided by the model. These measures will then feed the Power BI visualizations and dashboards used to investigate booking demand, cancellation behaviour, pricing, customer segments, and other business questions identified earlier in the project.
 
+# SECTION D: DAX & BUSINESS CALCULATIONS
+
+DAX measures were developed on top of the analytical data model to convert the cleaned booking data into meaningful business indicators. A total of **13 meaningful measures** were created, covering core KPIs, derived business measures, and advanced analytical calculations.
+
+## Level 1 – Core Measures
+
+### 1. Total Bookings
+
+```DAX
+Total Bookings =
+COUNTROWS(FactBooking)
+```
+
+Counts the total number of booking records in `FactBooking`. This provides the primary volume measure used throughout the analysis.
+
+### 2. Cancelled Bookings
+
+```DAX
+Cancelled Bookings =
+CALCULATE(
+    [Total Bookings],
+    FactBooking[is_canceled] = 1
+)
+```
+
+Calculates the number of bookings that were cancelled by applying a cancellation filter to the total bookings measure.
+
+### 3. Completed Bookings
+
+```DAX
+Completed Bookings =
+[Total Bookings] - [Cancelled Bookings]
+```
+
+Calculates bookings that were not cancelled by subtracting cancelled bookings from total bookings.
+
+### 4. Average ADR
+
+```DAX
+Average ADR =
+AVERAGE(FactBooking[adr])
+```
+
+Calculates the average Average Daily Rate (ADR) for the current filter context.
+
+### 5. Total Nights
+
+```DAX
+Total Nights =
+SUM(FactBooking[Total Stay Nights])
+```
+
+Calculates the total number of nights represented by all booking records in the current filter context. The underlying `Total Stay Nights` value was created earlier during Power Query from weekday and weekend stay nights.
+
+---
+
+## Level 2 – Calculated Business Measures
+
+### 6. Cancellation Rate %
+
+```DAX
+Cancellation Rate % =
+DIVIDE(
+    [Cancelled Bookings],
+    [Total Bookings],
+    0
+)
+```
+
+Calculates the proportion of bookings that were cancelled. `DIVIDE()` safely handles cases where the denominator is zero.
+
+### 7. Average Lead Time
+
+```DAX
+Average Lead Time =
+AVERAGE(FactBooking[lead_time])
+```
+
+Calculates the average number of days between booking and the scheduled arrival date.
+
+### 8. Average Stay Nights
+
+```DAX
+Average Stay Nights =
+AVERAGE(FactBooking[Total Stay Nights])
+```
+
+Calculates the average length of stay per booking.
+
+### 9. Repeat Guest Rate %
+
+```DAX
+Repeat Guest Rate % =
+DIVIDE(
+    CALCULATE(
+        [Total Bookings],
+        FactBooking[is_repeated_guest] = 1
+    ),
+    [Total Bookings],
+    0
+)
+```
+
+Calculates the percentage of bookings made by repeat guests. `CALCULATE()` filters the booking records to repeat guests before the result is divided by total bookings.
+
+### 10. Estimated Booking Revenue
+
+```DAX
+Estimated Booking Revenue =
+SUMX(
+    FactBooking,
+    FactBooking[adr] * FactBooking[Total Stay Nights]
+)
+```
+
+Estimates room revenue by multiplying ADR by total stay nights for each booking and summing the results. This is treated as an **estimated revenue proxy** because the dataset does not contain a directly recorded revenue field.
+
+---
+
+## Level 3 – Advanced DAX
+
+### 11. Hotel Booking Rank
+
+```DAX
+Hotel Booking Rank =
+RANKX(
+    ALL(DimHotel[Hotel]),
+    [Total Bookings],
+    ,
+    DESC,
+    DENSE
+)
+```
+
+Ranks hotels according to their total booking volume. `RANKX()` and `ALL()` allow the calculation to compare hotels against the complete hotel set rather than ranking only the currently filtered hotel.
+
+### 12. Booking Share %
+
+```DAX
+Booking Share % =
+DIVIDE(
+    [Total Bookings],
+    CALCULATE(
+        [Total Bookings],
+        ALLSELECTED(DimHotel[Hotel])
+    ),
+    0
+)
+```
+
+Calculates the selected hotel's share of bookings while preserving other report-level selections. `ALLSELECTED()` enables comparison with the selected hotel context while retaining relevant external filters.
+
+### 13. YoY Booking Growth %
+
+```DAX
+YoY Booking Growth % =
+VAR CurrentBookings =
+    [Total Bookings]
+VAR PreviousYearBookings =
+    CALCULATE(
+        [Total Bookings],
+        SAMEPERIODLASTYEAR(DimDate[Date])
+    )
+RETURN
+    DIVIDE(
+        CurrentBookings - PreviousYearBookings,
+        PreviousYearBookings,
+        0
+    )
+```
+
+Calculates year-over-year growth in booking volume. The measure uses variables, `CALCULATE()`, `SAMEPERIODLASTYEAR()`, and `DIVIDE()` to compare the current period with the equivalent period in the previous year.
+
+---
+
+# Summary of DAX Measures
+
+|  # | Measure                     | Level   | Main Purpose                         |
+| -: | --------------------------- | ------- | ------------------------------------ |
+|  1 | `Total Bookings`            | Level 1 | Total booking volume                 |
+|  2 | `Cancelled Bookings`        | Level 1 | Number of cancelled bookings         |
+|  3 | `Completed Bookings`        | Level 1 | Number of non-cancelled bookings     |
+|  4 | `Average ADR`               | Level 1 | Average daily room rate              |
+|  5 | `Total Nights`              | Level 1 | Total nights across bookings         |
+|  6 | `Cancellation Rate %`       | Level 2 | Proportion of cancelled bookings     |
+|  7 | `Average Lead Time`         | Level 2 | Average booking lead time            |
+|  8 | `Average Stay Nights`       | Level 2 | Average booking duration             |
+|  9 | `Repeat Guest Rate %`       | Level 2 | Share of bookings from repeat guests |
+| 10 | `Estimated Booking Revenue` | Level 2 | Estimated room-revenue proxy         |
+| 11 | `Hotel Booking Rank`        | Level 3 | Hotel ranking by booking volume      |
+| 12 | `Booking Share %`           | Level 3 | Hotel contribution to total bookings |
+| 13 | `YoY Booking Growth %`      | Level 3 | Year-over-year booking growth        |
+
+The 13 measures exceed the required minimum of 12 and provide a progression from fundamental KPIs to more advanced analytical calculations.
+
+---
+
+# Documentation of the Six Most Important DAX Measures
+
+The following six measures were selected as the most important because together they provide the core performance, cancellation, pricing, customer, and time-based indicators required for the hotel booking analysis.
+
+## 1. Total Bookings
+
+![Total Bookings Measure](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/04_DAX/Level%201%20%E2%80%93%20Core%20Measures/Total_Bookings.png)
+
+**What it calculates:**
+`Total Bookings` counts the number of booking records in `FactBooking`.
+
+**Why it is useful:**
+It provides the fundamental measure of booking demand and acts as the denominator for several other calculations, including cancellation rate, repeat guest rate, and booking share.
+
+**Main DAX functions:**
+`COUNTROWS()`
+
+**Filter context:**
+The measure responds automatically to filters from dimensions such as hotel, country, room type, market segment, and date. For example, selecting `City Hotel` limits the count to City Hotel bookings.
+
+**Dashboard use:**
+Used as a primary KPI card and as the foundation for booking-volume visuals and other measures.
+
+---
+
+## 2. Cancelled Bookings
+
+![Cancelled Bookings Measure](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/04_DAX/Level%201%20%E2%80%93%20Core%20Measures/Cancelled_Bookings.png)
+
+**What it calculates:**
+Counts bookings where `is_canceled = 1`.
+
+**Why it is useful:**
+Cancellation volume is a major indicator of booking performance and helps management understand the scale of lost or cancelled demand.
+
+**Main DAX functions:**
+`CALCULATE()` and the existing `[Total Bookings]` measure.
+
+**Filter context:**
+The cancellation filter is applied within the existing report context. Selecting a hotel, country, month, or market segment calculates cancelled bookings specifically for that selection.
+
+**Dashboard use:**
+Used in KPI cards, cancellation comparisons, and cancellation-related charts.
+
+---
+
+## 3. Cancellation Rate %
+
+![Cancellation Rate Measure](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/04_DAX/Level%202%20%E2%80%93%20Calculated%20Business%20Measures/Cancellation_Rate%25.png)
+
+**What it calculates:**
+The percentage of bookings that were cancelled:
+
+`Cancelled Bookings ÷ Total Bookings`
+
+**Why it is useful:**
+A rate is more informative than a raw cancellation count when comparing hotels, markets, countries, or periods of different sizes.
+
+**Main DAX functions:**
+`DIVIDE()`
+
+**Filter context:**
+The numerator and denominator are both evaluated within the current filter context. For example, selecting `Resort Hotel` returns the cancellation rate for Resort Hotel only.
+
+**Dashboard use:**
+Used as a major KPI and in visuals comparing cancellation behaviour across hotels, countries, market segments, and time periods.
+
+---
+
+## 4. Average ADR
+
+![Average ADR Measure](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/04_DAX/Level%201%20%E2%80%93%20Core%20Measures/Average_ADR.png)
+
+**What it calculates:**
+Calculates the average `adr` across booking records.
+
+**Why it is useful:**
+ADR is a key pricing indicator and allows management to compare the average daily rate across hotels, time periods, countries, market segments, and room types.
+
+**Main DAX functions:**
+`AVERAGE()`
+
+**Filter context:**
+The average changes dynamically according to the active report filters. For example, filtering to a particular hotel or month recalculates ADR for that subset.
+
+**Dashboard use:**
+Used in KPI cards and pricing comparison visuals.
+
+---
+
+## 5. Estimated Booking Revenue
+
+![Estimated Booking Revenue Measure](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/04_DAX/Level%202%20%E2%80%93%20Calculated%20Business%20Measures/EstimatedBookingRevenue.png)
+
+**What it calculates:**
+For each booking, ADR is multiplied by `Total Stay Nights`, and the resulting values are summed.
+
+**Why it is useful:**
+It provides an analytical estimate of room revenue and enables comparisons of revenue contribution across hotels, market segments, and time periods.
+
+**Main DAX functions:**
+`SUMX()`
+
+**Filter context:**
+`SUMX()` operates over the rows remaining in the current filter context. Therefore, selecting a hotel, country, or date period changes the estimated revenue accordingly.
+
+**Dashboard use:**
+Used in revenue-oriented KPI cards and comparison visuals.
+
+---
+
+## 6. YoY Booking Growth %
+
+![YoY Booking Growth Measure](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/04_DAX/Level%203%20%E2%80%93%20Advanced%20DAX/YoYBookingGrowth%25.png)
+
+**What it calculates:**
+Compares current booking volume with the equivalent period in the previous year and calculates the percentage change.
+
+**Why it is useful:**
+It helps identify whether booking demand is increasing or decreasing over time and provides a stronger performance indicator than a single-period booking count.
+
+**Main DAX functions:**
+`VAR`, `CALCULATE()`, `SAMEPERIODLASTYEAR()`, and `DIVIDE()`
+
+**Filter context:**
+The measure uses the dedicated `DimDate` table to shift the current date context to the previous year. Other active dimension filters, such as hotel or country, continue to affect the calculation.
+
+**Dashboard use:**
+Used in trend analysis and KPI visuals to show year-over-year changes in booking demand.
+
+---
+
+## DAX and Filter Context
+
+The measures were designed to work with the Star Schema established in Section C. Dimension selections filter `FactBooking` through the one-to-many relationships, allowing the same DAX measure to produce different results according to the user's selections.
+
+For example:
+
+```text
+DimHotel
+   ↓
+FactBooking
+   ↓
+DAX Measure
+```
+
+A measure such as `Total Bookings` therefore does not return one fixed number in every visual. Its result changes according to the active filter context created by slicers, axes, page filters, and other dimensions.
+
+The use of `CALCULATE()`, `ALL()`, `ALLSELECTED()`, variables, `RANKX()`, and time intelligence demonstrates context manipulation and more advanced DAX techniques appropriate to the analytical model.
+
+## *Transition to Data Visualization*
+
+The DAX stage produced meaningful measures for analysing bookings, cancellations, pricing, guest behaviour, and performance trends. These measures now provide the foundation for the next stage: **interactive Power BI visualizations and dashboards**.
+
 
