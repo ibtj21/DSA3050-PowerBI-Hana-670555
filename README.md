@@ -909,6 +909,8 @@ The following six measures were selected as the most important because together 
 
 ## 1. Total Bookings
 
+![Total Bookings Measure](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/04_DAX/Level%201%20%E2%80%93%20Core%20Measures/Total_Bookings.png)
+
 **What it calculates:**
 `Total Bookings` counts the number of booking records in `FactBooking`.
 
