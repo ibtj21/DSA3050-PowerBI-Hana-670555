@@ -1077,6 +1077,8 @@ This page answers:
 
 The page is designed so that the major performance story can be understood quickly without requiring detailed exploration.
 
+![Executive Overview Dashboard](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/05_dashboard/dashboard_overview.png)
+
 ---
 
 ## Page 2: Booking & Cancellation Analysis
@@ -1092,6 +1094,8 @@ This page answers:
 > **Where is booking demand concentrated, and what booking patterns are associated with cancellations?**
 
 The combination of geographic, categorical, and relationship-based visuals provides a more detailed exploration than the Executive Overview.
+
+![Booking & Cancellation Analysis Dashboard](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/05_dashboard/dashboard_analysis.png)
 
 ---
 
@@ -1120,6 +1124,15 @@ This page answers:
 
 The diagnostic page therefore represents the transition from descriptive reporting to deeper analytical investigation.
 
+![Deeper Diagnostic Insights 1](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/05_dashboard/dashboard_insights1.png)
+
+![Deeper Diagnostic Insights 2](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/05_dashboard/dashboard_insigts2.png)
+
+![Deeper Diagnostic Insights 3](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/05_dashboard/dashboard_insights3.png)
+
+![Deeper Diagnostic Insights 4](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/05_dashboard/dashboard_insights4.png)
+
+![Deeper Diagnostic Insights 5](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/05_dashboard/dashboard_insights5.png)
 ---
 
 ## Dashboard Visual Selection
