@@ -930,6 +930,8 @@ Used as a primary KPI card and as the foundation for booking-volume visuals and 
 
 ## 2. Cancelled Bookings
 
+![Cancelled Bookings Measure](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/04_DAX/Level%201%20%E2%80%93%20Core%20Measures/Cancelled_Bookings.png)
+
 **What it calculates:**
 Counts bookings where `is_canceled = 1`.
 
@@ -948,6 +950,8 @@ Used in KPI cards, cancellation comparisons, and cancellation-related charts.
 ---
 
 ## 3. Cancellation Rate %
+
+![Cancellation Rate Measure](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/04_DAX/Level%202%20%E2%80%93%20Calculated%20Business%20Measures/Cancellation_Rate%25.png)
 
 **What it calculates:**
 The percentage of bookings that were cancelled:
@@ -970,6 +974,8 @@ Used as a major KPI and in visuals comparing cancellation behaviour across hotel
 
 ## 4. Average ADR
 
+![Average ADR Measure](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/04_DAX/Level%201%20%E2%80%93%20Core%20Measures/Average_ADR.png)
+
 **What it calculates:**
 Calculates the average `adr` across booking records.
 
@@ -989,6 +995,8 @@ Used in KPI cards and pricing comparison visuals.
 
 ## 5. Estimated Booking Revenue
 
+![Estimated Booking Revenue Measure](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/04_DAX/Level%202%20%E2%80%93%20Calculated%20Business%20Measures/EstimatedBookingRevenue.png)
+
 **What it calculates:**
 For each booking, ADR is multiplied by `Total Stay Nights`, and the resulting values are summed.
 
@@ -1007,6 +1015,8 @@ Used in revenue-oriented KPI cards and comparison visuals.
 ---
 
 ## 6. YoY Booking Growth %
+
+![YoY Booking Growth Measure](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/04_DAX/Level%203%20%E2%80%93%20Advanced%20DAX/YoYBookingGrowth%25.png)
 
 **What it calculates:**
 Compares current booking volume with the equivalent period in the previous year and calculates the percentage change.
