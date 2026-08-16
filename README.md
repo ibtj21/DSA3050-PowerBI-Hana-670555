@@ -27,32 +27,117 @@ The main objective of the project is to transform the raw booking data into mean
 DSA3050-PowerBI-Hana-670555/
 │
 ├── data/
-│   └── Hotel Booking Demand dataset and supporting data files
+│   └── hotels.csv
 │
 ├── powerbi/
-│   └── Power BI project / report files
+│   └── DSA3050_Hana.pbix
 │
 ├── screenshots/
-│   ├── 01_data/
+│   │
+│   ├── 01_raw_data/
+│   │   ├── hotel.png
+│   │   ├── load_data.png
+│   │   ├── raw_data1.png
+│   │   ├── raw_data2.png
+│   │   └── raw_data3.png
+│   │
 │   ├── 02_power_query/
+│   │   │
+│   │   ├── Creating_conditional_columns/
+│   │   │   └── conditional_column.png
+│   │   │
+│   │   ├── Creating_custom_columns/
+│   │   │   └── custom_column.png
+│   │   │
+│   │   ├── Extracting_information_from_dates/
+│   │   │   ├── extract_month.png
+│   │   │   └── extract_year.png
+│   │   │
+│   │   ├── Handling_errors/
+│   │   │   ├── filtered_invalid_rows.png
+│   │   │   └── replace_errors.png
+│   │   │
+│   │   ├── Handling_missing_values/
+│   │   │   ├── fill_agent.png
+│   │   │   ├── fill_company.png
+│   │   │   └── fill_country.png
+│   │   │
+│   │   ├── Merge_columns/
+│   │   │   └── merge_columns.png
+│   │   │
+│   │   ├── Renaming_fields_appropriately/
+│   │   │   ├── renaming.png
+│   │   │   └── result.png
+│   │   │
+│   │   ├── Replacing Incorrect Values/
+│   │   │   └── negative_adr.png
+│   │   │
+│   │   ├── remove_duplicates/
+│   │   │   ├── remove_duplicates.png
+│   │   │   └── after_removal.png
+│   │   │
+│   │   └── Applied_steps.png
+│   │
 │   ├── 03_model/
+│   │   └── completed_model _view.png
+│   │
 │   ├── 04_DAX/
+│   │   │
 │   │   ├── Level 1 – Core Measures/
+│   │   │   ├── Average_ADR.png
+│   │   │   ├── Cancelled_Bookings.png
+│   │   │   ├── Completed_Bookings.png
+│   │   │   ├── Total_Bookings.png
+│   │   │   └── Total_Nights.png
+│   │   │
 │   │   ├── Level 2 – Calculated Business Measures/
+│   │   │   ├── AverageLeadTime.png
+│   │   │   ├── AverageStayNights.png
+│   │   │   ├── Cancellation_Rate%.png
+│   │   │   ├── EstimatedBookingRevenue.png
+│   │   │   └── RepeatGuestRate%.png
+│   │   │
 │   │   └── Level 3 – Advanced DAX/
+│   │       ├── BookingShare%.png
+│   │       ├── Hotel Booking Rank.png
+│   │       └── YoYBookingGrowth%.png
+│   │
 │   └── 05_dashboard/
-│       ├── dashboard_overview.png
 │       ├── dashboard_analysis.png
 │       ├── dashboard_insights1.png
 │       ├── dashboard_insights3.png
 │       ├── dashboard_insights4.png
-│       └── dashboard_insights5.png
+│       ├── dashboard_insights5.png
+│       ├── dashboard_insigts2.png
+│       └── dashboard_overview.png
 │
 ├── LICENSE
 │
 └── README.md
 ```
 
+### Repository Contents
+
+The repository is organized to document the complete Power BI workflow:
+
+**`data/`** contains the source dataset.
+
+**`powerbi/`** contains the completed Power BI project file.
+
+**`screenshots/01_raw_data/`** documents the initial dataset and data loading stage.
+
+**`screenshots/02_power_query/`** contains evidence of data-cleaning and transformation activities, including custom and conditional columns, date extraction, error handling, missing-value treatment, column merging, field renaming, incorrect-value correction, duplicate removal, and the final Applied Steps view.
+
+**`screenshots/03_model/`** contains the completed Star Schema model.
+
+**`screenshots/04_DAX/`** documents the DAX calculations across Core Measures, Calculated Business Measures, and Advanced DAX.
+
+**`screenshots/05_dashboard/`** contains the final Executive Overview, Detailed Analysis, and Deeper Diagnostic dashboard screenshots.
+
+**`README.md`** provides the full project documentation, including dataset understanding, data preparation, data modelling, DAX calculations, dashboard development, and analytical interpretation.
+
+```
+```
 
 # SECTION A: DATASET SELECTION & UNDERSTANDING
 
