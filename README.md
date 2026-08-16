@@ -136,9 +136,6 @@ The repository is organized to document the complete Power BI workflow:
 
 **`README.md`** provides the full project documentation, including dataset understanding, data preparation, data modelling, DAX calculations, dashboard development, and analytical interpretation.
 
-```
-```
-
 # SECTION A: DATASET SELECTION & UNDERSTANDING
 
 ## 1. The Source of the Dataset
