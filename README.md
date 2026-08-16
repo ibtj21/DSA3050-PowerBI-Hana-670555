@@ -1,6 +1,6 @@
 # Hotel Booking Demand Analysis in Power BI
 
-## DSA 3050A – Business Intelligence & Data Visualization
+## DSA 3050A : Business Intelligence & Data Visualization
 
 **Student:** Hana Gashaw  
 **Student ID:** 670555  
@@ -295,7 +295,7 @@ The following screenshot shows the initial loading of the raw dataset into Power
 
 The subsequent stage focuses on profiling the imported data, identifying data-quality issues, and applying appropriate transformations in Power Query.
 
-# SECTION B: POWER QUERY – DATA CLEANING & TRANSFORMATION
+# SECTION B: POWER QUERY : DATA CLEANING & TRANSFORMATION
 
 Power Query was used to prepare the raw Hotel Booking Demand dataset for analysis before developing the data model and DAX measures. The transformations were based on data-quality issues and analytical requirements identified during the initial inspection of the dataset.
 
@@ -391,7 +391,7 @@ The invalid negative ADR record was removed, leaving valid ADR values for pricin
 
 ---
 
-## 5. Merging Columns — Creating `Arrival Date`
+## 5. Merging Columns : Creating `Arrival Date`
 
 **Problem:**
 Arrival information was distributed across three separate fields: `arrival_date_year`, `arrival_date_month`, and `arrival_date_day_of_month`. Using these fields separately would make date-based analysis less convenient.
@@ -409,7 +409,7 @@ The dataset contains a unified arrival date that can be used for chronological a
 
 ---
 
-## 6. Creating Custom Columns — `Total Stay Nights`
+## 6. Creating Custom Columns : `Total Stay Nights`
 
 **Problem:**
 The duration of each booking was divided between `stays_in_weekend_nights` and `stays_in_week_nights`. Analysing the complete duration would therefore require combining the two fields repeatedly.
@@ -429,7 +429,7 @@ Each booking now has a `Total Stay Nights` value representing the complete durat
 
 ---
 
-## 7. Creating Conditional Columns — `Cancellation Status`
+## 7. Creating Conditional Columns : `Cancellation Status`
 
 **Problem:**
 The `is_canceled` field represents cancellation using numeric values (`0` and `1`), which are less intuitive for business users when interpreting reports and dashboard visuals.
@@ -450,7 +450,7 @@ The dataset now contains a business-friendly `Cancellation Status` field that ca
 
 ---
 
-## 8. Extracting Information from Dates — `Month`
+## 8. Extracting Information from Dates : `Month`
 
 **Problem:**
 The `reservation_status_date` field contains a complete date, but month-level analysis requires an appropriate time component.
@@ -468,7 +468,7 @@ A month-level field was created from `reservation_status_date` for use in time-b
 
 ---
 
-## 9. Renaming Fields Appropriately — `Reservation Month`
+## 9. Renaming Fields Appropriately : `Reservation Month`
 
 **Problem:**
 The extracted month field was initially named simply `Month`, which did not clearly indicate which date field the month originated from and could create ambiguity when additional date attributes are introduced.
