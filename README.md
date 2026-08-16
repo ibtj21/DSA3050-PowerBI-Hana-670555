@@ -21,6 +21,39 @@ The main objective of the project is to transform the raw booking data into mean
 
 ---
 
+## Repository Structure
+
+```text
+DSA3050-PowerBI-Hana-670555/
+│
+├── data/
+│   └── Hotel Booking Demand dataset and supporting data files
+│
+├── powerbi/
+│   └── Power BI project / report files
+│
+├── screenshots/
+│   ├── 01_data/
+│   ├── 02_power_query/
+│   ├── 03_model/
+│   ├── 04_DAX/
+│   │   ├── Level 1 – Core Measures/
+│   │   ├── Level 2 – Calculated Business Measures/
+│   │   └── Level 3 – Advanced DAX/
+│   └── 05_dashboard/
+│       ├── dashboard_overview.png
+│       ├── dashboard_analysis.png
+│       ├── dashboard_insights1.png
+│       ├── dashboard_insights3.png
+│       ├── dashboard_insights4.png
+│       └── dashboard_insights5.png
+│
+├── LICENSE
+│
+└── README.md
+```
+
+
 # SECTION A: DATASET SELECTION & UNDERSTANDING
 
 ## 1. The Source of the Dataset
