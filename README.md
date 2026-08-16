@@ -1339,3 +1339,54 @@ with elevated cancellation risk
 ```
 
 This structure allows the report to move from **high-level performance**, to **detailed investigation**, and finally to **diagnostic insight**, supporting a coherent business story.
+
+## Analytical Questions: Answers and Key Findings
+
+The completed Power BI solution was designed to answer the project's original analytical questions. The following findings are based on the dashboard views with the main slicers set to **All**, together with the DAX measures and diagnostic analysis developed in the report.
+
+## 1. How does hotel booking demand change over time?
+
+Booking demand changes noticeably across the 2015–2017 period rather than remaining constant. The trend shows periods of lower demand followed by increases, with stronger booking activity around the middle and later parts of the year. This indicates a clear time-related pattern in hotel demand and supports the use of the dedicated `DimDate` table for trend analysis.
+
+## 2. What is the overall cancellation rate, and how does it differ between the City Hotel and Resort Hotel?
+
+The overall cancellation rate is approximately **27.5%** of bookings. The **City Hotel has the higher cancellation rate**, at approximately 30%, compared with roughly 24% for the Resort Hotel. This suggests that cancellation risk is more pronounced for City Hotel bookings.
+
+## 3. Which market segments, customer types, and distribution channels contribute the most bookings?
+
+The **Online TA** market segment contributes the largest share of bookings, followed by **Offline TA/TO** and **Direct** bookings. At the customer level, **Transient customers** represent the dominant customer type, while travel-agent/tour-operator channels account for a substantial proportion of distribution activity. This indicates that the hotel business relies heavily on digitally mediated and transient demand.
+
+## 4. How does the Average Daily Rate (ADR) vary across hotels, room types, seasons, and market segments?
+
+The overall average ADR is approximately **106.34**. ADR varies according to hotel, room type, booking period, and market segment, indicating that pricing is influenced by both the type of accommodation and the characteristics of demand. The analysis also shows that booking volume and ADR do not necessarily move together, meaning that a segment or hotel with more bookings is not automatically the highest-priced one.
+
+## 5. Which factors are associated with higher booking cancellation rates?
+
+The Key Influencers analysis identifies several booking characteristics associated with increased cancellation likelihood. The strongest influence is **Non Refund deposit type**, while other influential factors include **non-repeat guests, longer lead times, Online TA bookings, TA/TO distribution, and Transient customer types**. These factors help explain cancellation risk rather than simply describing the number of cancellations.
+
+## 6. How does booking lead time relate to cancellation behaviour?
+
+The scatter analysis shows a **positive relationship between booking lead time and cancellation risk**. Cancellation rates generally become higher as lead time increases, although the relationship is not perfectly linear and considerable variation exists between individual booking records. Very long lead times, including values above approximately **299 days**, are identified by the diagnostic analysis as an important cancellation-related factor.
+
+## 7. How do booking patterns differ between the City Hotel and Resort Hotel?
+
+The **City Hotel generates substantially more bookings** than the Resort Hotel and also has a higher cancellation rate. This indicates that the two hotels have different demand profiles: City Hotel handles greater booking volume but also faces greater cancellation exposure, while Resort Hotel has lower overall volume and comparatively lower cancellation risk.
+
+## 8. Which countries contribute the highest number of bookings?
+
+Booking demand is geographically concentrated, particularly across European countries. The leading contributing countries include **Portugal, the United Kingdom, France, Spain, and Germany**. The geographic map also shows that European markets account for a substantial proportion of the booking base, making these markets particularly important for demand and cancellation analysis.
+
+## 9. How does booking behaviour differ between repeated and non-repeated guests?
+
+Repeat guests represent only about **3.9% of bookings**, meaning that approximately **96.1%** of bookings come from non-repeat guests. The booking base is therefore dominated by new or non-returning customers, suggesting an opportunity to strengthen customer retention and loyalty initiatives.
+
+## 10. Which areas of hotel booking performance require management attention?
+
+The analysis identifies several areas requiring attention. First, the **City Hotel's higher cancellation rate** represents a significant operational and revenue risk. Second, **Non Refund bookings, Online TA activity, and long booking lead times** are strongly associated with cancellation risk. Third, the low **repeat-guest rate of 3.9%** suggests limited customer retention. Finally, high-volume segments with elevated cancellation rates deserve particular attention because they can create a substantial impact even when their cancellation rate is only moderately above average.
+
+## Overall Analytical Conclusion
+
+The analysis shows that hotel performance is influenced not only by booking volume, but also by **when customers book, how they book, their deposit arrangements, market segment, and whether they are repeat guests**. City Hotel generates greater demand but also experiences higher cancellation exposure. The diagnostic analysis further suggests that **long lead times, Non Refund deposits, and OTA-related booking activity** are important areas for management to investigate.
+
+Overall, the main management opportunity is to reduce avoidable cancellations while improving customer retention, particularly within high-volume booking channels and segments that show elevated cancellation risk.
+
