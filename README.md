@@ -187,7 +187,7 @@ The following transformations were applied to improve data quality, consistency,
 
 ---
 
-## 1. Handling Errors — `children` Column
+## 1. Handling Errors : `children` Column
 
 **Problem:**
 The `children` column was already assigned the appropriate **Whole Number** data type, but four records contained the value `NA`. These non-numeric values resulted in `DataFormat.Error` when Power Query attempted to interpret the column as numeric.
@@ -257,7 +257,7 @@ Missing categorical values were handled consistently, reducing unexplained blank
 
 ---
 
-## 4. Replacing Incorrect Values — `adr`
+## 4. Replacing Incorrect Values : `adr`
 
 **Problem:**
 The `adr` (Average Daily Rate) field contained one negative value of **-6.38**. A negative daily hotel rate is not meaningful for the intended pricing analysis.
@@ -402,7 +402,7 @@ The Power Query stage transformed the raw Hotel Booking Demand dataset into a cl
 This stage will provide the foundation for developing **DAX measures, interactive dashboards, and meaningful business insights**.
 
 
-# SECTION C: DATA MODELLING
+# SECTION C : DATA MODELLING
 
 ## 1. Identification of the Main Fact Table
 
@@ -694,9 +694,8 @@ The original `hotels` table was also kept as a staging query rather than loaded 
 
 ---
 
-## Model Structure
+## The final analytical model structure
 
-The final analytical model therefore consists of:
 
 ![Completed Power BI Data Model](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/03_model/completed_model%20_view.png)
 
@@ -710,7 +709,7 @@ With the analytical model established, the next stage is to develop **DAX measur
 
 DAX measures were developed on top of the analytical data model to convert the cleaned booking data into meaningful business indicators. A total of **13 meaningful measures** were created, covering core KPIs, derived business measures, and advanced analytical calculations.
 
-## Level 1 – Core Measures
+## Level 1 : Core Measures
 
 ### 1. Total Bookings
 
@@ -762,7 +761,7 @@ Calculates the total number of nights represented by all booking records in the 
 
 ---
 
-## Level 2 – Calculated Business Measures
+## Level 2 : Calculated Business Measures
 
 ### 6. Cancellation Rate %
 
@@ -825,7 +824,7 @@ Estimates room revenue by multiplying ADR by total stay nights for each booking 
 
 ---
 
-## Level 3 – Advanced DAX
+## Level 3 : Advanced DAX
 
 ### 11. Hotel Booking Rank
 
@@ -1063,9 +1062,12 @@ Three interactive Power BI report pages were developed to create a progressive a
 
 **Executive Overview → Detailed Analysis → Deeper Diagnostic Insights**
 
-The dashboards were designed to answer different business questions at each stage rather than repeat the same information across pages.
+The dashboards were designed to answer different business questions at each stage across pages.
 
 ## Page 1: Executive Overview
+
+![Executive Overview Dashboard](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/05_dashboard/dashboard_overview.png)
+
 
 The **Executive Overview** provides management with an immediate understanding of overall hotel booking performance. Five KPI cards present `Total Bookings`, `Cancellation Rate %`, `Average ADR`, `Total Nights`, and `Estimated Booking Revenue`.
 
@@ -1077,11 +1079,11 @@ This page answers:
 
 The page is designed so that the major performance story can be understood quickly without requiring detailed exploration.
 
-![Executive Overview Dashboard](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/05_dashboard/dashboard_overview.png)
-
 ---
 
 ## Page 2: Booking & Cancellation Analysis
+
+![Booking & Cancellation Analysis Dashboard](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/05_dashboard/dashboard_analysis.png)
 
 The second page moves from the overall performance view into detailed analysis of **booking distribution and cancellation behaviour**.
 
@@ -1095,7 +1097,6 @@ This page answers:
 
 The combination of geographic, categorical, and relationship-based visuals provides a more detailed exploration than the Executive Overview.
 
-![Booking & Cancellation Analysis Dashboard](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/05_dashboard/dashboard_analysis.png)
 
 ---
 
@@ -1124,13 +1125,33 @@ This page answers:
 
 The diagnostic page therefore represents the transition from descriptive reporting to deeper analytical investigation.
 
+### **Diagnostic View 1 : Key Influencers**
+
+The Key Influencers analysis identifies the booking characteristics most strongly associated with cancellation. The results highlight factors such as Non Refund deposit type, longer lead times, Online TA market segment, and non-repeat guests, helping move the analysis from cancellation rates to potential drivers of cancellation risk.
+
 ![Deeper Diagnostic Insights 1](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/05_dashboard/dashboard_insights1.png)
+
+### **Diagnostic View 2 : Top Segments Overview**
+
+The Top Segments view identifies groups of bookings with higher-than-average cancellation levels and ranks them according to cancellation rate and population size. This provides a high-level view of the segments requiring further investigation.
 
 ![Deeper Diagnostic Insights 2](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/05_dashboard/dashboard_insigts2.png)
 
+### **Diagnostic View 3 : Segment 1**
+
+Segment 1 shows a 45% average cancellation rate, substantially above the overall average of approximately 27%. The segment is associated with Online TA bookings, non-A reserved room types, and lead times between 19 and 299 days, indicating a combination of booking characteristics linked to elevated cancellation risk.
+
 ![Deeper Diagnostic Insights 3](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/05_dashboard/dashboard_insights3.png)
 
-![Deeper Diagnostic Insights 4](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/05_dashboard/dashboard_insights4.png)
+### **Diagnostic View 4: Segment 2**
+
+Segment 2 has an average cancellation rate of approximately 42%, again above the overall average. It is characterised by Online TA bookings, reserved room type D, and lead times between 19 and 299 days, providing another combination of factors associated with higher cancellation risk.
+
+### **![Deeper Diagnostic Insights 4](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/05_dashboard/dashboard_insights4.png)
+
+### **Diagnostic View 5 : Segment 3**
+
+Segment 3 records an average cancellation rate of approximately 40%, compared with the overall average of 27%. The segment is associated with Online TA bookings, reserved room type A, and lead times between 19 and 299 days, reinforcing the importance of market segment, room type, and booking lead time in the cancellation analysis.
 
 ![Deeper Diagnostic Insights 5](https://github.com/ibtj21/DSA3050-PowerBI-Hana-670555/blob/main/screenshots/05_dashboard/dashboard_insights5.png)
 ---
@@ -1169,8 +1190,9 @@ The report demonstrates meaningful Power BI interactivity through:
 * **Page navigation buttons** connecting the three analytical stages.
 * **Interactive scatter plots** that allow users to inspect individual points.
 * **Interactive Key Influencers analysis** that allows users to examine different influencing factors and top segments.
-
+* **Drill-down** that allows users to the booking trend through the years,quarters,months or days.
 The report therefore provides more than static charts and allows users to explore the booking data dynamically.
+* **Buttons** that allow the user which page they are looking at currently.
 
 ---
 
@@ -1200,4 +1222,4 @@ Booking characteristics and segments associated
 with elevated cancellation risk
 ```
 
-This structure allows the report to move from **high-level performance**, to **detailed investigation**, and finally to **diagnostic insight**, supporting a coherent business story rather than presenting unrelated visualizations.
+This structure allows the report to move from **high-level performance**, to **detailed investigation**, and finally to **diagnostic insight**, supporting a coherent business story.
